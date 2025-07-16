@@ -33,7 +33,9 @@ This dataset is decently structured and standardized, but there are rooms for fu
 
 <img width="641" height="357" alt="Connection Setup_SetupCloudEnvironment_Partitioningsettings_01 07" src="https://github.com/user-attachments/assets/ce7be7f1-7bf1-4d3e-84a3-2d4a3bcb1d13" />
 
-
+📜 **Data Dictionary**
+* **This data dictionary has been enhanced to meet the rigorous standards of government documentation.** In addition to standard column descriptions, the following metadata fields have been included to ensure clarity, data quality assurance, and unambiguous interpretation:
+[Data Dictionary file](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Docs/SQL%20Layers%20-%20Warehousing%20and%20Modeling_DataDictionary_16.07.pdf)
 ---
 
 ## 3. Tools & Technologies Used
