@@ -20,16 +20,17 @@
 This dataset is decently structured and standardized, but there are rooms for further exploration to have the analysis efficient
 
 🏁 **Analytical layers**
-
+![Define Analytical Layers - Analysis Flow](https://github.com/user-attachments/assets/5e90a8cb-d102-402f-ad44-bef0a9616884)
 
 💡 **Data Lineage**
-
+![Warehousing and Modeling_Data Lineage](https://github.com/user-attachments/assets/3a8fa59d-3e01-4d7b-a4b3-9ccf705fed4b)
 
 ⛯ **Entity Relationship Diagram**
-
+<img width="1040" height="753" alt="Data Availability checking_ERDDiagram_28 06" src="https://github.com/user-attachments/assets/d50f0557-c71e-4ff5-bab1-95c7db7671e9" />
 
 ⛯ **Setting partitioning column in the fact table**
 Using the column order_date as the partitioning column for better performance and cost-saving while querying on BigQuery
+<img width="641" height="357" alt="Connection Setup_SetupCloudEnvironment_Partitioningsettings_01 07" src="https://github.com/user-attachments/assets/ce7be7f1-7bf1-4d3e-84a3-2d4a3bcb1d13" />
 
 
 ---
@@ -345,8 +346,7 @@ HAVING
 --no order has more than 1 country
 ```
 💡 **Foundation logic after Data Exploration**
-
-
+![Data Exploration Findings](https://github.com/user-attachments/assets/3ca2c140-91ab-47e6-8dc5-66891df38486)
 
 #### Gold Layer
 * **Create a VIEW functioning as Data Modeling in BigQuery**
