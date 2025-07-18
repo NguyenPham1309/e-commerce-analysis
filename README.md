@@ -43,7 +43,8 @@ This dataset is decently structured and standardized, but there are rooms for fu
 *   **Data Visualization & Dashboarding:** Looker Studio 
 *   **Version Control:** Git & GitHub
 *   **IDE/Editor (for this README):** Visual Studio Code
-
+*   **Planning**: [Notion](https://www.notion.so/E_commerce-project_SQL-22087cc4273f8034ac63dec17e820406?source=copy_link)
+<img width="572" height="330" alt="Project Initialization_ProjectPlanning_18 07" src="https://github.com/user-attachments/assets/afb16e19-ac28-4b64-a9d2-8cb68bf353c8" />
 ---
 
 ## 4. Task Solutions
