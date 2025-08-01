@@ -17,9 +17,11 @@ This document outlines the structure of the e-commerce analysis project. **Click
     -   [2.4 Data Dictionary](#24--data-dictionary)
 3.  [**Tools & Technologies Used**](#3-tools--technologies-used)
 4.  [**Task Solutions**](#4-task-solutions)
-    -   [4.1 ETL the source files with Google BigQuery](#421-etl-the-source-files-with-google-bigquery)
-    -   *(...continue for Bronze, Silver, Gold layers...)*
-    -   [4.2 Analysis with Google Colab](#422-analysis-with-google-colab-using-python-and-related-libraries-pandas)
+    -   [4.1 ETL the source files with Google BigQuery](#41-etl-the-source-files-with-google-bigquery)
+    	-   [Bronze Layer](#411-bronze-layer)
+    	-   [Silver Layer](#412-silver-layer)
+    	-   [Gold Layer](#413-gold-layer)
+    -   [4.2 Analysis with Google Colab](#42-analysis-with-google-colab-using-python-and-related-libraries-pandas)
 
 ---
 ## 📝 Project Planning & Management (Notion)
