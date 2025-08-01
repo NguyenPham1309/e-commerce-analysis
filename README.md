@@ -5,6 +5,46 @@
 **Contact:** nguyen.pham961309@gmail.com | [https://www.linkedin.com/in/khoinguyenpham/]
 ---
 
+## 📌 Table of Contents
+
+This document outlines the structure of the e-commerce analysis project. **Click the links below to jump directly to the corresponding section in the main notebook.**
+
+1.  [**Introduction & Objectives**](#1-introduction--objectives)
+2.  [**Data Modeling**](#2-data-modeling)
+    -   [2.1 Analytical layers](#21-analytical-layers)
+    -   [2.2 Data Lineage](#22-data-lineage)
+    -   [2.3 Entity Relationship Diagram](#23-entity-relationship-diagram)
+    -   [2.4 Data Dictionary](#24-data-dictionary)
+3.  [**Tools & Technologies Used**](#3-tools--technologies-used)
+4.  [**Task Solutions**](#4-task-solutions)
+    -   [4.1 ETL the source files with Google BigQuery](#41-etl-the-source-files-with-google-bigquery)
+    -   *(...continue for Bronze, Silver, Gold layers...)*
+    -   [4.2 Analysis with Google Colab](#42-analysis-with-google-colab-using-python-and-related-libraries-pandas)
+
+---
+## 📝 Project Planning & Management (Notion)
+
+The entire project lifecycle, from initial brainstorming to task tracking and final documentation, was managed using Notion. You can view the public project planning board and related documents at the link below.
+
+- **[View the Full Project Plan on Notion](https://www.notion.so/E_commerce-project_SQL-22087cc4273f8034ac63dec17e820406?source=copy_link)**
+
+---
+
+## 🚀 Full Analysis Notebook
+
+The complete code, visualizations, and detailed findings can be found in the main project notebook:
+
+- **[e-commerce-analysis.ipynb](https://colab.research.google.com/drive/1SAVQj1F1GnejoYx-lYqwfF6wpi5Zf9cc?authuser=2#scrollTo=CPm6mjMtc1wr)**
+
+---
+## ⚙️ How to Run This Project
+
+1.  Clone the repository: `git clone <your-repo-url>`
+2.  Ensure you have the necessary libraries installed: `pandas`, `numpy`, `seaborn`, `matplotlib`, `google-cloud-bigquery`.
+3.  Open and run the `e-commerce-analysis.ipynb` notebook in a Jupyter or Google Colab environment.
+
+---
+
 ## 1. Introduction & Objectives
 
 * This project presents how to handle datawarehouse structures using SQL (BigQuery), how to explore the data through EDA process with Python (Google Colab), and how to do the data visualization (Looker Studio) 
