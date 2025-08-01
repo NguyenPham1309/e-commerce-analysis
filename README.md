@@ -11,15 +11,15 @@ This document outlines the structure of the e-commerce analysis project. **Click
 
 1.  [**Introduction & Objectives**](#1-introduction--objectives)
 2.  [**Data Modeling**](#2-data-modeling)
-    -   [2.1 Analytical layers](#analytical-layers)
-    -   [2.2 Data Lineage](#data-lineage)
-    -   [2.3 Entity Relationship Diagram](#entity-relationship-diagram)
-    -   [2.4 Data Dictionary](#data-dictionary)
+    -   [2.1 Analytical layers](#21--analytical-layers)
+    -   [2.2 Data Lineage](#22--data-lineage)
+    -   [2.3 Entity Relationship Diagram](#23--entity-relationship-diagram)
+    -   [2.4 Data Dictionary](#24--data-dictionary)
 3.  [**Tools & Technologies Used**](#3-tools--technologies-used)
 4.  [**Task Solutions**](#4-task-solutions)
-    -   [4.1 ETL the source files with Google BigQuery](#etl-the-source-files-with-google-bigquery)
+    -   [4.1 ETL the source files with Google BigQuery](#41--etl-the-source-files-with-google-bigquery)
     -   *(...continue for Bronze, Silver, Gold layers...)*
-    -   [4.2 Analysis with Google Colab](#analysis-with-google-colab-using-python-and-related-libraries-pandas)
+    -   [4.2 Analysis with Google Colab](#42--analysis-with-google-colab-using-python-and-related-libraries-pandas)
 
 ---
 ## 📝 Project Planning & Management (Notion)
