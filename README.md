@@ -5,6 +5,51 @@
 **Contact:** nguyen.pham961309@gmail.com | [https://www.linkedin.com/in/khoinguyenpham/]
 ---
 
+## 📌 Table of Contents
+
+This document outlines the structure of the e-commerce analysis project. **Click the links below to jump directly to the corresponding section in the main notebook.**
+
+1.  [**Introduction & Objectives**](#1-introduction--objectives)
+2.  [**Data Modeling**](#2-data-modeling)
+    -   [2.1 Analytical layers](#21--analytical-layers)
+    -   [2.2 Data Lineage](#22--data-lineage)
+    -   [2.3 Entity Relationship Diagram](#23--entity-relationship-diagram)
+    -   [2.4 Data Dictionary](#24--data-dictionary)
+3.  [**Tools & Technologies Used**](#3-tools--technologies-used)
+4.  [**Task Solutions**](#4-task-solutions)
+    -   [4.1 ETL the source files with Google BigQuery](#41-etl-the-source-files-with-google-bigquery)
+    	-   [Bronze Layer](#411-bronze-layer)
+    	-   [Silver Layer](#412-silver-layer)
+    	-   [Gold Layer](#413-gold-layer)
+    -   [4.2 Analysis with Google Colab](#42-eda-with-google-colab-using-python-and-related-libraries-pandas-numpy-matplotlib-seaborn))
+      	-   [To connect with Big Query](#421-to-connect-with-bigquery)
+       	-   [To transform and load the database from BigQuery to Google Colab](#422-to-transform-and-load-the-database-from-bigquery-to-google-colab)
+        -   [General exploration of the Master view](#423-general-exploration-of-the-master-view)
+
+---
+## 📝 Project Planning & Management (Notion)
+
+The entire project lifecycle, from initial brainstorming to task tracking and final documentation, was managed using Notion. You can view the public project planning board and related documents at the link below.
+
+- **[View the Full Project Plan on Notion](https://www.notion.so/E_commerce-project_SQL-22087cc4273f8034ac63dec17e820406?source=copy_link)**
+
+---
+
+## 🚀 Full Analysis Notebook
+
+The complete code, visualizations, and detailed findings can be found in the main project notebook:
+
+- **[e-commerce-analysis.ipynb](https://colab.research.google.com/drive/1SAVQj1F1GnejoYx-lYqwfF6wpi5Zf9cc?authuser=2#scrollTo=CPm6mjMtc1wr)**
+
+---
+## ⚙️ How to Run This Project
+
+1.  Clone the repository: `git clone <your-repo-url>`
+2.  Ensure you have the necessary libraries installed: `pandas`, `numpy`, `seaborn`, `matplotlib`, `google-cloud-bigquery`.
+3.  Open and run the `e-commerce-analysis.ipynb` notebook in a Jupyter or Google Colab environment.
+
+---
+
 ## 1. Introduction & Objectives
 
 * This project presents how to handle datawarehouse structures using SQL (BigQuery), how to explore the data through EDA process with Python (Google Colab), and how to do the data visualization (Looker Studio) 
@@ -19,13 +64,13 @@
 ## 2. Data Modeling
 This dataset is decently structured and standardized, but there are rooms for further exploration to have the analysis efficient
 
-🏁 **Analytical layers**
+### 2.1 🏁 **Analytical layers**
 ![Define Analytical Layers - Analysis Flow](https://github.com/user-attachments/assets/5e90a8cb-d102-402f-ad44-bef0a9616884)
 
-💡 **Data Lineage**
+### 2.2 💡 **Data Lineage**
 ![Warehousing and Modeling_Data Lineage](https://github.com/user-attachments/assets/3a8fa59d-3e01-4d7b-a4b3-9ccf705fed4b)
 
-⛯ **Entity Relationship Diagram**
+### 2.3 ⛯ **Entity Relationship Diagram**
 <img width="1040" height="753" alt="Data Availability checking_ERDDiagram_28 06" src="https://github.com/user-attachments/assets/d50f0557-c71e-4ff5-bab1-95c7db7671e9" />
 
 ⛯ **Setting partitioning column in the fact table**
@@ -33,7 +78,7 @@ This dataset is decently structured and standardized, but there are rooms for fu
 
 <img width="641" height="357" alt="Connection Setup_SetupCloudEnvironment_Partitioningsettings_01 07" src="https://github.com/user-attachments/assets/ce7be7f1-7bf1-4d3e-84a3-2d4a3bcb1d13" />
 
-📜 **Data Dictionary**
+### 2.4 📜 **Data Dictionary**
 * **This data dictionary has been enhanced to meet the rigorous standards of government documentation.** In addition to standard column descriptions, the following metadata fields have been included to ensure clarity, data quality assurance, and unambiguous interpretation:
 [Data Dictionary file](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Docs/SQL%20Layers%20-%20Warehousing%20and%20Modeling_DataDictionary_16.07.pdf)
 ---
@@ -43,11 +88,13 @@ This dataset is decently structured and standardized, but there are rooms for fu
 *   **Data Visualization & Dashboarding:** Looker Studio 
 *   **Version Control:** Git & GitHub
 *   **IDE/Editor (for this README):** Visual Studio Code
-
+*   **Planning**: [Notion](https://www.notion.so/E_commerce-project_SQL-22087cc4273f8034ac63dec17e820406?source=copy_link)
+<img width="572" height="330" alt="Project Initialization_ProjectPlanning_18 07" src="https://github.com/user-attachments/assets/afb16e19-ac28-4b64-a9d2-8cb68bf353c8" />
 ---
 
 ## 4. Task Solutions
-#### Bronze Layer
+### 4.1 ETL the source files with Google BigQuery
+#### 4.1.1 Bronze Layer
 **Metadata information of the tables**
 ``` sql
 SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, CHARACTER_MAXIMUM_LENGTH
@@ -68,7 +115,7 @@ WHERE TABLE_SCHEMA = 'e_commerce'
   AND TABLE_NAME = 'region';
 ```
 
-#### Silver Layer
+#### 4.1.2 Silver Layer
 **Simple EDA of customer table using SQL**
 ```sql
 SELECT 
@@ -351,7 +398,7 @@ HAVING
 💡 **Foundation logic after Data Exploration**
 ![Data Exploration Findings](https://github.com/user-attachments/assets/3ca2c140-91ab-47e6-8dc5-66891df38486)
 
-#### Gold Layer
+#### 4.1.3 Gold Layer
 * **Create a VIEW functioning as Data Modeling in BigQuery**
 ```sql
 CREATE OR REPLACE VIEW `e-commerce-sql-project-464611.my_server_data.vw_Master_Modeling_Data_v1` AS
@@ -1144,8 +1191,189 @@ LEFT JOIN
     ```
 
 ---
+### 4.2 EDA with Google Colab using Python and related libraries (Pandas, Numpy, Matplotlib, Seaborn)
+#### 4.2.1 To connect with BigQuery
 
-#### Project Structure
+```python
+# ==============================================================================
+# STEP 1: AUTHENTICATE YOUR COLAB NOTEBOOK
+# This is the standard way to authenticate in Google Colab.
+# It will trigger a pop-up window to ask for the permission.
+# ==============================================================================
+from google.colab import auth
+auth.authenticate_user()
+print('Authenticated successfully.')
+
+# Set the project ID to the Google Cloud Project.
+# This tells all subsequent gcloud commands which project to use by default.
+!gcloud config set project e-commerce-sql-project-464611
+
+# ==============================================================================
+# STEP 2: INITIALIZE THE BIGQUERY CLIENT
+# This sets up the connection object that will send our queries.
+# ==============================================================================
+from google.cloud import bigquery
+import pandas as pd
+```
+#### 4.2.2 To transform and load the database from BigQuery to Google Colab
+
+* **Sampling method**
+```python
+# ==============================================================================
+# 1. USING THE SAMPLING IDEA TO TEST THE DATA
+# ==============================================================================
+#Using triple quotes. It is more clean, readable and manageable
+#First, I load the master view to randomly check the data
+#I use xx% to get around 10K-50K rows for sample EDA
+
+# ==============================================================================
+# INTERACTIVE SCRIPT TO GET SAMPLE FRACTION FROM USER
+# ==============================================================================
+
+# ===================================================================
+# PART 1: DEFINE THE HELPER FUNCTION
+# This function's only job is to get a valid input from the user.
+# ===================================================================
+def get_sample_fraction():
+  while True:
+    #User input of sample fraction:
+    input_sfr = input("Enter the desired sample fraction: ")
+
+    #Using try-except to handle the input value
+    try:
+      sample_fraction = float(input_sfr)
+      #Check to see if the sample fraction in the valid range
+      if 0 < sample_fraction < 2:
+        print(f"Valid fraction, going to use the fraction of {sample_fraction} to take the sample from the Master view")
+        return sample_fraction
+      else:
+        #Demonstrates an error: the fraction is out of range and cannot be used as an input:
+        print("Eror: The fraction is out of value range, please type again: ")
+    except ValueError:
+      print("The input fraction is invalid. Please enter a decimal type of value (e.g., 0.001)")
+
+# ===================================================================
+# PART 2: THE MAIN SCRIPT LOGIC
+# This is the main "engine" of your program. It uses the helper
+# function to do its work.
+# ===================================================================
+print("Starting the sampling process")
+while True:
+  #1. Call our function above to get the sample_fraction from user
+  sample_fraction = get_sample_fraction()
+
+  #2 Building the SQL query based on the input sample_fraction above
+  sql_query = f"""
+  SELECT
+    *
+  FROM
+  `e-commerce-sql-project-464611.my_server_data.vw_Master_Modeling_Data_v1`
+  WHERE RAND() < {sample_fraction}
+    AND EXTRACT (YEAR FROM order_date) in (2020, 2021, 2022, 2023)
+  """
+
+  #3 Execute the query and load it into a dataframe
+  print(f"Executing the query to sample approximately of {sample_fraction * 100:.3f}% from the Master view...")
+  df_view = client.query(sql_query).to_dataframe()
+
+  #4 Check the number of the columns to see if it is enough data (even sampling or full population)
+  num_rows = df_view.shape[0]
+  if 10000 < num_rows < 50000:
+    print(f"The sample includes {num_rows}, ready to use. ")
+    break
+  elif num_rows <= 10000:
+    print(f"The {num_rows} is not enough, you need to increase the sample_fraction")
+  else:
+    print(f"The {num_rows} is bigger than expected, you want to reduce the sample fraction to get better loading performance")
+
+# When the break situation (the proper and correct value input), the statement announces that the exploration can be continued:
+print("Data sampling complete. Proceeding with analysis")
+```
+
+* **Full loading of data (possible in this case of under 150K rows)**
+```python
+# ==============================================================================
+# 2. OR USING THE WHOLE DATASET IF THE NUMBER OF ROWS ARE DECENT ENOUGH
+# ==============================================================================
+
+#1 Building the SQL query based on the input sample_fraction above
+sql_query = f"""
+SELECT
+  *
+FROM
+`e-commerce-sql-project-464611.my_server_data.vw_Master_Modeling_Data_v1`
+WHERE EXTRACT (YEAR FROM order_date) in (2020, 2021, 2022, 2023)
+"""
+
+#3 Execute the query and load it into a dataframe
+print(f"Executing the query to load full data from the Master view")
+df_view = client.query(sql_query).to_dataframe()
+print("Data sampling complete. Proceeding with analysis")
+```
+* **Import the necessary libraries**
+```python
+# Import the necessary libraries
+import seaborn as sns
+import matplotlib.pyplot as plt
+import math
+import numpy as np
+```
+#### 4.2.3 General exploration of the Master view
+'''
+Display the first few rows to confirm it loaded correctly
+print(df_view.head(5))
+
+Get a summary of the data types and null values
+df_view.info()
+
+Get description statistics for the numerical columns
+df_view.describe()
+'''
+'''
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 51290 entries, 0 to 51289
+Data columns (total 30 columns):
+'''
+
+| # | Column | Non-Null Count | Dtype  
+|:---:|  :----------------------  | :------------: | :----- |                
+| 0   |  row_id                   | 51290 non-null | Int64  | 
+| 1   |  order_id                 | 51290 non-null | object | 
+| 2   | order_date                | 51290 non-null | dbdate | 
+| 3   |  gross_sales              | 51290 non-null | object | 
+| 4   | discount                  | 51290 non-null | object | 
+| 5   |  quantity                 | 51290 non-null | Int64  | 
+| 6   |  profit                   | 51290 non-null | object | 
+| 7   |  sales_after_discount     | 51290 non-null | object | 
+| 8   |  unit_price_bdiscount     | 51290 non-null | object | 
+| 9   |  profit_margin_bdiscount  | 51290 non-null | object | 
+| 10  | implied_cost_record_level | 51290 non-null | object | 
+| 11  | implied_unit_cost         | 51290 non-null | object | 
+| 12  | customer_id               | 51290 non-null | object | 
+| 13  | birth_date                | 51290 non-null | dbdate | 
+| 14  | marital_status            | 51290 non-null | object | 
+| 15  | gender                    | 50928 non-null | object | 
+| 16  | annual_income             | 51290 non-null | Int64  | 
+| 17  | education_level           | 51290 non-null | object | 
+| 18  | occupation                | 51290 non-null | object | 
+| 19  | home_owner                | 51290 non-null | boolean|
+| 20  | product_code              | 51288 non-null | object |
+| 21  | product_name              | 51288 non-null | object |
+| 22  | product_category          | 51288 non-null | object |
+| 23  | product_subcategory       | 51288 non-null | object |
+| 24  | region_code               | 51288 non-null | object |
+| 25  | market                    | 51288 non-null | object |
+| 26  | region                    | 51288 non-null | object |
+| 27  | country                   | 51288 non-null | object |
+| 28  | state                     | 51288 non-null | object |
+| 29  | city                      | 51288 non-null | object |
+
+'''
+dtypes: Int64(3), boolean(1), dbdate(2), object(24)
+memory usage: 11.6+ MB
+'''
+
+## Project Structure
 
 The repository is organized as follows: (to be continuously updated in the upcoming time)
 
@@ -1186,6 +1414,8 @@ data/                                                 # For the datasets
 │   │   ├── GOLD_SQL_Region_Revenue Cost_TotalAverageContribution_RegionLevel.sql
 │   │   ├── GOLD_SQL_Product_Cat Subcat and Product line_in Total and Contribution.sql
 │   │   ├── GOLD_SQL_Customer_Revenue Cost_Total and Average_Demographic.sql
+|   ├──EDA process
+│   │   ├── To connect, transform, and load the SQL database into Google Colab
 ├── Tests/  
 ├── .gitignore                                            # Specifies intentionally untracked files
 └── README.md                                             # This file!
