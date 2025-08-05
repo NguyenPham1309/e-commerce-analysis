@@ -25,6 +25,7 @@ This document outlines the structure of the e-commerce analysis project. **Click
       	-   [To connect with Big Query](#421-to-connect-with-bigquery)
        	-   [To transform and load the database from BigQuery to Google Colab](#422-to-transform-and-load-the-database-from-bigquery-to-google-colab)
         -   [General exploration of the Master view](#423-general-exploration-of-the-master-view)
+        -   [Univariate analysis](#424-univariate-analysis)
 
 ---
 ## 📝 Project Planning & Management (Notion)
@@ -1485,7 +1486,7 @@ plt.show()
 # This includes gross sales column, and the derived columns from it
 # This is because there are many high-value outliers that squeeze the box into an invisible box. The values must be scaled to an extent where we can clearly see the box demonstration
 ```
-![Box plot Analysis]()
+![Box plot Analysis](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Boxplot%20Analysis_UnivariateAnalysis_EDA_05.08.png)
 
 ## Project Structure
 
