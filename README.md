@@ -1317,18 +1317,21 @@ import numpy as np
 ```
 #### 4.2.3 General exploration of the Master view
 '''
-# Display the first few rows to confirm it loaded correctly
+Display the first few rows to confirm it loaded correctly
 print(df_view.head(5))
 
-# Get a summary of the data types and null values
+Get a summary of the data types and null values
 df_view.info()
 
-#Get description statistics for the numerical columns
+Get description statistics for the numerical columns
 df_view.describe()
+'''
 '''
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 51290 entries, 0 to 51289
 Data columns (total 30 columns):
+'''
+
 | # | Column | Non-Null Count | Dtype  
 |:---:|  :----------------------  | :------------: | :----- |                
 | 0   |  row_id                   | 51290 non-null | Int64  | 
@@ -1361,8 +1364,11 @@ Data columns (total 30 columns):
 | 27  | country                   | 51288 non-null | object |
 | 28  | state                     | 51288 non-null | object |
 | 29  | city                      | 51288 non-null | object |
+
+'''
 dtypes: Int64(3), boolean(1), dbdate(2), object(24)
 memory usage: 11.6+ MB
+'''
 
 ## Project Structure
 
