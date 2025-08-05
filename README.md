@@ -1319,7 +1319,7 @@ import math
 import numpy as np
 ```
 #### 4.2.3 General exploration of the Master view
-'''
+```python
 Display the first few rows to confirm it loaded correctly
 print(df_view.head(5))
 
@@ -1328,12 +1328,12 @@ df_view.info()
 
 Get description statistics for the numerical columns
 df_view.describe()
-'''
-'''
+```
+```python
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 51290 entries, 0 to 51289
 Data columns (total 30 columns):
-'''
+```python
 
 | # | Column | Non-Null Count | Dtype  
 |:---:|  :----------------------  | :------------: | :----- |                
@@ -1368,10 +1368,46 @@ Data columns (total 30 columns):
 | 28  | state                     | 51288 non-null | object |
 | 29  | city                      | 51288 non-null | object |
 
-'''
+```python
 dtypes: Int64(3), boolean(1), dbdate(2), object(24)
 memory usage: 11.6+ MB
-'''
+```
+* **Change numeric columns into truly numeric type of int64 or float 64**
+```python
+# Not every numeric columns are truly recognized as int64 or float64.
+# Therefore, I need to convert them into the logically correct numeric type
+
+# List of columns that should be numeric but are currently 'object' type
+columns_to_convert = [
+    'gross_sales',
+    'discount',
+    'profit',
+    'sales_after_discount',
+    'unit_price_bdiscount',
+    'profit_margin_bdiscount',
+    'implied_cost_record_level',
+    'implied_unit_cost'
+]
+print("Converting columns to numeric type...")
+
+# Converting by looping through each column in the list
+for col in columns_to_convert:
+  df_view[col] = pd.to_numeric(df_view[col], errors = 'coerce')
+  print(f"Convert the column {col} successfully")
+
+print("\nConversion completed!")
+
+#Review to see how many converted value above
+print("\nChecking for NaN (Not a number) during the conversion")
+print(df_view[columns_to_convert].isnull().sum())
+```python
+```python
+New DataFrame info:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 51290 entries, 0 to 51289
+Data columns (total 30 columns):
+```
+[Numeric columns with stats after transformation](./Img/Numeric%20columns_EDA_05.08.png)
 
 ## Project Structure
 
