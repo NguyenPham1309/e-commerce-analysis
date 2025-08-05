@@ -1407,7 +1407,7 @@ New DataFrame info:
 RangeIndex: 51290 entries, 0 to 51289
 Data columns (total 30 columns):
 ```
-(./Img/Numeric%20columns_EDA_05.08.png)
+![Transforming numeric columns](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Numeric%20columns_EDA_05.08.png)
 
 ## Project Structure
 
