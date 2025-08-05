@@ -21,7 +21,10 @@ This document outlines the structure of the e-commerce analysis project. **Click
     	-   [Bronze Layer](#411-bronze-layer)
     	-   [Silver Layer](#412-silver-layer)
     	-   [Gold Layer](#413-gold-layer)
-    -   [4.2 Analysis with Google Colab](#42-analysis-with-google-colab-using-python-and-related-libraries-pandas)
+    -   [4.2 Analysis with Google Colab](#42-eda-with-google-colab-using-python-and-related-libraries-pandas-numpy-matplotlib-seaborn))
+      	-   [To connect with Big Query](#421-to-connect-with-bigquery)
+       	-   [To transform and load the database from BigQuery to Google Colab](#422-to-transform-and-load-the-database-from-bigquery-to-google-colab)
+        -   [General exploration of the Master view](#423-general-exploration-of-the-master-view)
 
 ---
 ## 📝 Project Planning & Management (Notion)
