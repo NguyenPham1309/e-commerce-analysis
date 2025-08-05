@@ -1407,7 +1407,7 @@ New DataFrame info:
 RangeIndex: 51290 entries, 0 to 51289
 Data columns (total 30 columns):
 ```
-[Numeric columns with stats after transformation](./Img/Numeric%20columns_EDA_05.08.png)
+(./Img/Numeric%20columns_EDA_05.08.png)
 
 ## Project Structure
 
