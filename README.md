@@ -1315,6 +1315,55 @@ import matplotlib.pyplot as plt
 import math
 import numpy as np
 ```
+#### 4.2.3 General exploration of the Master view
+'''
+# Display the first few rows to confirm it loaded correctly
+print(df_view.head(5))
+
+# Get a summary of the data types and null values
+df_view.info()
+
+#Get description statistics for the numerical columns
+df_view.describe()
+'''
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 51290 entries, 0 to 51289
+Data columns (total 30 columns):
+| # | Column | Non-Null Count | Dtype  
+|:---:|  :----------------------  | :------------: | :----- |                
+| 0   |  row_id                   | 51290 non-null | Int64  | 
+| 1   |  order_id                 | 51290 non-null | object | 
+| 2   | order_date                | 51290 non-null | dbdate | 
+| 3   |  gross_sales              | 51290 non-null | object | 
+| 4   | discount                  | 51290 non-null | object | 
+| 5   |  quantity                 | 51290 non-null | Int64  | 
+| 6   |  profit                   | 51290 non-null | object | 
+| 7   |  sales_after_discount     | 51290 non-null | object | 
+| 8   |  unit_price_bdiscount     | 51290 non-null | object | 
+| 9   |  profit_margin_bdiscount  | 51290 non-null | object | 
+| 10  | implied_cost_record_level | 51290 non-null | object | 
+| 11  | implied_unit_cost         | 51290 non-null | object | 
+| 12  | customer_id               | 51290 non-null | object | 
+| 13  | birth_date                | 51290 non-null | dbdate | 
+| 14  | marital_status            | 51290 non-null | object | 
+| 15  | gender                    | 50928 non-null | object | 
+| 16  | annual_income             | 51290 non-null | Int64  | 
+| 17  | education_level           | 51290 non-null | object | 
+| 18  | occupation                | 51290 non-null | object | 
+| 19  | home_owner                | 51290 non-null | boolean|
+| 20  | product_code              | 51288 non-null | object |
+| 21  | product_name              | 51288 non-null | object |
+| 22  | product_category          | 51288 non-null | object |
+| 23  | product_subcategory       | 51288 non-null | object |
+| 24  | region_code               | 51288 non-null | object |
+| 25  | market                    | 51288 non-null | object |
+| 26  | region                    | 51288 non-null | object |
+| 27  | country                   | 51288 non-null | object |
+| 28  | state                     | 51288 non-null | object |
+| 29  | city                      | 51288 non-null | object |
+dtypes: Int64(3), boolean(1), dbdate(2), object(24)
+memory usage: 11.6+ MB
+
 ## Project Structure
 
 The repository is organized as follows: (to be continuously updated in the upcoming time)
