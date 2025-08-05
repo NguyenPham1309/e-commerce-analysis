@@ -1409,6 +1409,84 @@ Data columns (total 30 columns):
 ```
 ![Transforming numeric columns](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Numeric%20columns_EDA_05.08.png)
 
+* **First exploration from the stats of numeric column**
+```python
+#===============================================================================
+# GROSS SALES AND RELATED DERIVED COLUMNS
+#===============================================================================
+# The mean gross sales are double than its median. It means the gross sales are also skewed right
+# Gross sales and profit are two independently original columns, which means there are rooms to look at their gap (cost)
+# At the 75th percentile and max value, the gap is much bigger than the rest of the gross sales: Most orders are small, but few in the final quarter pulled up the mean
+# The same status can be seen in sales related columns (sales after discount, unit price before discount)
+
+#===============================================================================
+# DISCOUNT
+#===============================================================================
+# Most of the transaction do not have discount (the 50th percentile still 0 discount
+# Discounts apply max at 85%. There are very unique transactions and products with particular discount treatment
+
+#===============================================================================
+# PROFIT
+#===============================================================================
+# Profit is highly skewed right. Mean is larger than median (20.77 > 7.2)
+# Min profit is smaller than 0, which means there are lost in several transactions or products
+# The standard deviation is too much larger than the mean. It is the signal that the profit is quite volatile and unstable among the transaction record
+
+#===============================================================================
+# ANNUAL INCOME
+#===============================================================================
+# Centered around the area of 50K - 60K 
+# Right skewed with several high salary goes up to 170K
+```
+#### 4.2.4 Univariate analysis
+
+```python
+#===============================================================================
+# UNIVARIATE ANALYSIS
+# Mainly using boxplot, density plot and histograms
+# Correlation analysis to find the relationship between variables
+#===============================================================================
+
+#===============================================================================
+# BOX PLOT DISTRIBUTION
+#===============================================================================
+
+# List of numeric columns
+numeric_cols = df_view.select_dtypes(include=['float64', 'int64']).columns
+
+# Calculate the grid size needed for the subplots
+n_cols = 3
+n_rows = math.ceil(len(numeric_cols) / n_cols)
+
+# Create a figure and a grid of subplots
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(15, n_rows * 4))
+
+# To turn the 2D plot above of axes into one long list
+axes = axes.flatten()
+
+# Loop through each numeric column and create a boxplot on a separate subplot
+for i, col in enumerate(numeric_cols):
+    sns.boxplot(data=df_view, y=col, ax=axes[i])
+    axes[i].set_title(f'Distribution of {col}')
+    axes[i].set_ylabel('') # Clear the y-label for cleaner look
+
+# Hide any unused subplots
+for i in range(len(numeric_cols), len(axes)):
+    fig.delaxes(axes[i])
+
+# Adjust the layout to prevent titles from overlapping
+plt.tight_layout()
+plt.show()
+
+#===============================================================================
+# HANDLING SQUASHED BOX PLOT
+#===============================================================================
+
+# This includes gross sales column, and the derived columns from it
+# This is because there are many high-value outliers that squeeze the box into an invisible box. The values must be scaled to an extent where we can clearly see the box demonstration
+```
+![Box plot Analysis]()
+
 ## Project Structure
 
 The repository is organized as follows: (to be continuously updated in the upcoming time)
