@@ -1410,6 +1410,26 @@ Data columns (total 30 columns):
 ```
 ![Transforming numeric columns](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Numeric%20columns_EDA_05.08.png)
 
+* **Handling null values in the gender column**
+```python
+# Handling null values in the gender column
+df_view.isnull().sum()
+
+# Counting the number of each value in gender column
+print(df_view['gender'].value_counts(dropna=False))
+
+# Fill all NaN values with the string 'Other'
+df_view['gender'] = df_view['gender'].fillna('Other')
+
+#Checking after state of edition
+print(df_view['gender'].value_counts())
+gender
+M       25735
+F       25193
+None      362
+Name: count, dtype: int64
+```
+
 * **First exploration from the stats of numeric column**
 ```python
 #===============================================================================
