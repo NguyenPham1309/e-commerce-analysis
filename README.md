@@ -1624,8 +1624,10 @@ This suggests we should investigate what drives these extreme outcomes.
 
 ### **Data Validation and Assumptions**
 🌠 **Finding**: The Exploratory Data Analysis revealed a significant number of transactions with extreme negative profit margins, some exceeding -80%. These outliers have a substantial impact on summary statistics.
-:o:**Limitation**: As this is a public dataset for portfolio use, it is not possible to perform root cause analysis by tracing these transactions back to the source e-commerce and financial systems.
-:closed_book:**Working assumption**: Hence, for the purpose of this analysis, the provided sales, profit, and discount figures are treated as accurate as-is.
+
+:o: **Limitation**: As this is a public dataset for portfolio use, it is not possible to perform root cause analysis by tracing these transactions back to the source e-commerce and financial systems.
+
+:closed_book: **Working assumption**: Hence, for the purpose of this analysis, the provided sales, profit, and discount figures are treated as accurate as-is.
 
 :bulb:**Recommendation in a Business Context**: If this were a live business project, my immediate recommendation would be to flag the order_ids and row_ids for these specific outlier transactions. A follow-up investigation with the Operations or Finance team would be necessary to validate whether these data points represent:
 1. Data entry errors (e.g., incorrect cost-of-goods-sold).
