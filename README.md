@@ -1677,7 +1677,7 @@ ax2.set_title('Distribution of Gross Sales (Log Scale)', fontsize=16)
 ax2.set_xlabel('Gross Sales (Log Scale)')
 ax2.set_ylabel('Frequency')
 ```
-![Density plot analysis](Img/Density analysis_Gross sales_EDA_!2.08.png)
+![Density plot analysis](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Density%20analysis_Gross%20sales_EDA_!2.08.png)
 * **Density plot analysis**
 1. Original Plot:
 ```python
