@@ -1512,7 +1512,7 @@ plt.show()
 
 :interrobang: However, different metrics contain different characteristics that may affect how we can handle the squashed box (contains negative values, only positive values, discrete values, or practical continuous values). A single solution for all of these box plots is not effective - we must adapt to its uniqueness - even they are in the same section of numeric data types
 
-##### 4.2.5 Gross Sales (with Logged Scale plot)
+##### 4.2.4.1 Gross Sales (with Logged Scale plot)
 ```python
 #===============================================================================
 # GROSS SALES box plot original and logging scale
