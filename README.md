@@ -45,7 +45,7 @@ The complete code, visualizations, and detailed findings can be found in the mai
 ---
 ## ⚙️ How to Run This Project
 
-1.  Clone the repository: `git clone <your-repo-url>`
+1.  Clone the repository: `git clone <https://github.com/NguyenPham1309/e-commerce-analysis>'
 2.  Ensure you have the necessary libraries installed: `pandas`, `numpy`, `seaborn`, `matplotlib`, `google-cloud-bigquery`.
 3.  Open and run the `e-commerce-analysis.ipynb` notebook in a Jupyter or Google Colab environment.
 
