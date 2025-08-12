@@ -28,9 +28,11 @@ This document outlines the structure of the e-commerce analysis project. **Click
         -   [Univariate analysis](#424-univariate-analysis)
         	- [Box plot - Gross sales](#4241-gross-sales-with-logged-scale-plot)
         	- [Box plot - Profit margin](#4242-profit-with-specific-symmetric-logged-scale-plot)
-        	- [Density plot and Histograms](
-        	- [Density plot - Gross sales](
-        	- [Density plot - Profit](
+        	- [Density plot and Histograms](#4243-density-plot-and-histograms-for-specific-columns)
+        	- [Density plot - Gross sales](#4244-density-plot---gross-sales)
+        	- [Density plot - Profit](#4245-density-plot---profit)
+        	- [Density plot - Annual income](#4246-density-plot---annual-income)
+        	- [Density plot - Discounts](#4247-density-plot---discounts)
 
 ---
 ## 📝 Project Planning & Management (Notion)
@@ -1691,7 +1693,7 @@ ax2.set_ylabel('Frequency')
 # There are some high-value transactions contributing to the total revenue
 # As the original plot stated, we should not use the average value for typical gross sales by transactions; the median is better
 ```
-**Insight** While the average sale is high ($127) due to a few large transactions, our most representative sale is closer to the median value of $56, which is confirmed by the peak of the log-transformed distribution
+💡**Insight**: While the average sale is high ($127) due to a few large transactions, our most representative sale is closer to the median value of $56, which is confirmed by the peak of the log-transformed distribution
 
 ❓ **Questions**
 1. A secondary hump around $15 may indicate a point of interest of a 2nd type of transaction
