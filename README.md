@@ -1525,7 +1525,7 @@ plt.show()
 
 # Create the plot area
 # fig is the whole big frame, axes is individual subplots when having multiple plots
-fig, axes = plt.subplots(1,2, figsize =(12,6)) #1 row, 2 columns , figsize 12 inches wide 6 inches tall
+fig, axes = plt.subplots(1,2, figsize =(12,6)) #1 row, 2 columns, figsize 12 inches wide 6 inches tall
 
 '''
 fig (The entire canvas, 12x6 inches)
@@ -1560,13 +1560,16 @@ axes[1].set_ylabel('Gross Sales $ - Log Scale')
 * **Analysis of Gross Sales**
 1. Original box plot: Gross sales contains extremely high value by transaction (by product)
 2. New logged scale plot:
-	IQR: $22 - $150 = $128 (50% of transaction)
-	Median: $53
-	Whiskers: $1 - $280
-	Outliers: from over $280 to $thousands
+```python
+IQR: $22 - $150 = $128 (50% of transaction)
+Median: $53
+Whiskers: $1 - $280
+Outliers: from over $280 to $thousands
 The analysis of the logged scale box plot reveals that the median gross sale is approximately $53. The central 50% of all sales fall between $22 (Q1) and $150 (Q3). The data ranges from a minimum of $1 up to a maximum 'normal' value of $280, with a significant number of outliers beyond that point, reaching into the thousands of dollars.
+```
 
 :ballot_box_with_check: **Insight** Most of the orders are in the standardized and reasonable sales of an e-commerce platform. However, the long tail of outliers may reveal more insights about how they grow their business.
+
 :question: **Question** Are those outliers from a few whale customers or from specific products?
 
 
