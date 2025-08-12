@@ -1618,11 +1618,21 @@ This suggests we should investigate what drives these extreme outcomes.
 :exclamation:Furthermore, the IQR starts at $0 means at least 25% of the recorded transactions are not profitable. It matches the profit margin plot. The profit margin bdiscount confirmed this issue. There are outliers with the negative profit margin of up to 80%
 
 ❓ **Questions**
-1. Is this a data quality issue? - Maybe the problem of how the source data feeds into my calculation. However, in this particular case, I cannot reach this step of data sources, due to the characteristics of a community project.
+1. Is this a data quality issue? - Maybe the problem is how the source data feeds into my calculation.
 2. Is this an intentional loss to buy more profitable products?
 3. High discounts vs. negative profits?
 
+### **Data Validation and Assumptions**
+🌠 **Finding**: The Exploratory Data Analysis revealed a significant number of transactions with extreme negative profit margins, some exceeding -80%. These outliers have a substantial impact on summary statistics.
+:o:**Limitation**: As this is a public dataset for portfolio use, it is not possible to perform root cause analysis by tracing these transactions back to the source e-commerce and financial systems.
+:closed_book:**Working assumption**: Hence, for the purpose of this analysis, the provided sales, profit, and discount figures are treated as accurate as-is.
 
+:bulb:**Recommendation in a Business Context**: If this were a live business project, my immediate recommendation would be to flag the order_ids and row_ids for these specific outlier transactions. A follow-up investigation with the Operations or Finance team would be necessary to validate whether these data points represent:
+1. Data entry errors (e.g., incorrect cost-of-goods-sold).
+2. System processing errors (e.g., product returns being incorrectly categorized as sales).
+3. Legitimate but extreme business events (e.g., clearance of expired stock, promotional bundles) that need to be understood.
+
+##### 4.2.4.3 Density plot and Histograms for Specific columns
 
 ## Project Structure
 
