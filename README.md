@@ -26,6 +26,11 @@ This document outlines the structure of the e-commerce analysis project. **Click
        	-   [To transform and load the database from BigQuery to Google Colab](#422-to-transform-and-load-the-database-from-bigquery-to-google-colab)
         -   [General exploration of the Master view](#423-general-exploration-of-the-master-view)
         -   [Univariate analysis](#424-univariate-analysis)
+        	- [Box plot - Gross sales](#4241-gross-sales-with-logged-scale-plot)
+        	- [Box plot - Profit margin](
+        	- [Density plot and Histograms](
+        	- [Density plot - Gross sales](
+        	- [Density plot - Profit](
 
 ---
 ## 📝 Project Planning & Management (Notion)
