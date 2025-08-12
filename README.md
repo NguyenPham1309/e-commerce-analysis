@@ -32,6 +32,7 @@ This document outlines the structure of the e-commerce analysis project. **Click
         	- [Density plot - Gross sales](#4244-density-plot---gross-sales)
         	- [Density plot - Profit](#4245-density-plot---profit)
         	- [Density plot - Annual income](#4246-density-plot---annual-income)
+    		- [Density plot - Questions for further exploration](
         	- [Density plot - Discounts](#4247-density-plot---discounts)
 
 ---
@@ -1885,7 +1886,7 @@ The value of 2nd valley 24342.00942
 #a group of density needed to be discussed further
 # 4. The distribution is rightly skewed, with the normal max of income is ~$130000, and several outliers up to $160000
 Does this one relate to several transactions that have extremely high gross sales, and extremely high profit?
-'''
+```
 
 :hourglass:**Recommendation**
 * Based on the meaningful benchmark of income, we can
