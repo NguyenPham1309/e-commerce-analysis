@@ -1704,10 +1704,242 @@ ax2.set_ylabel('Frequency')
  - So there is a soft floor when coming under $10 - rarely a transaction comes under this price
 
 ##### 4.2.4.5 Density plot - Profit
+❗ Because the profit can be negative, we need 2 different pairs of density plots. One is used for the profitable side (>0), and one is for the negative profit. This would make the further analysis easier in terms of understanding what drives the profit and what hinders the profitability
+
+```python
+fig, axes = plt.subplots(2,2, figsize =(16,12))
+
+# Flatten the 2D array of axes into a 1D array.
+# Now I can access them with axes[0], axes[1], axes[2], axes[3].
+axes = axes.flatten()
+
+# Because the proft can be negative, we need to have 2 different pairs of plots
+# One for profitable and one for negative profit
+# Density plot for profit
+# Combines the histogram and KDE in one function
+ax1 = sns.histplot(
+    data = df_view[df_view['profit'] > 0],
+    x='profit',
+    kde=True, #to add the histogram into the density plot below
+    ax=axes[0],
+    color='seagreen'
+)
+ax1.set_title('Distribution of Profit (Original)', fontsize=16)
+ax1.set_xlabel('Profit (Original)')
+ax1.set_ylabel('Frequency')
+
+# Logging scale of combine graphs
+ax2 = sns.histplot(
+    data = df_view[df_view['profit'] > 0],
+    x='profit',
+    kde=True, #to add the histogram into the density plot below
+    log_scale=True,
+    ax=axes[1],
+    color='seagreen'
+)
+ax2.set_title('Distribution of Profit (Log Scale)', fontsize=16)
+ax2.set_xlabel('Profit (Log Scale)')
+ax2.set_ylabel('Frequency')
+#-------------------------------------------------------------------------------
+# For negative profit
+ax3 = sns.histplot(
+    data = df_view[df_view['profit'] < 0],
+    x='profit',
+    kde=True, #to add the histogram into the density plot below
+    ax=axes[2],
+    color='crimson'
+)
+ax3.set_title('Distribution of Negative Profit (Original)', fontsize=16)
+ax3.set_xlabel('Profit (Original)')
+ax3.set_ylabel('Frequency')
+
+# Logging scale of combine graphs
+ax4 = sns.histplot(
+    x = df_view[df_view['profit'] < 0]['profit'].abs(), #This abs is to positive all the values, preparing for the logging scale below
+    kde=True, #to add the histogram into the density plot below
+    log_scale=True,
+    ax=axes[3],
+    color='crimson'
+)
+ax4.set_title('Distribution of Negative Profit (Log Scale)', fontsize=16)
+ax4.set_xlabel('Profit (Log Scale)')
+ax4.set_ylabel('Frequency')
+
+# Adjust layout to prevent titles/labels from overlapping
+plt.tight_layout()
+plt.show()
+```
+![Density plot](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Density%20analysis_Profit_EDA_12.08.png)
+
+🌠 **Insights and Questions**
+1. Extreme losses with the long right tail of the negative profit log scale
+* Goes over $1000 of negative profit
+* What are the products that makes those extremely negative profit?
+* From which customers or which region?
+* Is there any pattern of discounts?
+
+2. Similar analysis for the profitable side
+* Outliers of transactions where the business recognizes over $1000 profit each transactions
+* What are their characteristics?
+
+3. The highest density of both negative and positive profit around $10-$15
+* Both sides are log-normal distribution
+* What drives those thousands of transactions?
+* Which products, countries or customers mainly contribute to that?
+
 
 ##### 4.2.4.6 Density plot - Annual income
+❗The annual income, despite its logic of a possible continuous value, is a discrete integer value in this specific context. This characteristic affect the smoothiness of the KDE and the allocation of histogram columns. Therefore, to use the combination of KDE and histogram for this specific variable, we need to modify the bandwidth (instead of the default one from seaborn)
 
-##### 4.2.4.7 Density plot - Discounts
+```python
+fig, axes = plt.subplots(2,2, figsize =(24,12))
+
+# Flatten the 2D array of axes into a 1D array.
+# Now I can access them with axes[0], axes[1], axes[2], axes[3].
+axes = axes.flatten()
+
+# Annual income will be discrete type - integer value
+# Combines the histogram and KDE in one function
+ax1 = sns.histplot(
+    data = df_view,
+    x='annual_income',
+    kde=True, #to add the histogram into the density plot below
+    bins=25,
+    ax=axes[0],
+)
+ax1.set_title('Distribution of Annual income (Original)', fontsize=16)
+ax1.set_xlabel('Annual Income (Original)')
+ax1.set_ylabel('Frequency')
+
+# transform the data of annual income into log data type
+log_annual_income = np.log(df_view['annual_income'])
+
+ax2 = sns.histplot(
+    x=log_annual_income,
+    kde=True, #to add the histogram into the density plot below
+    bins=25,
+    ax=axes[1]
+)
+ax2.set_title('Distribution of Annual income (Log)', fontsize=16)
+ax2.set_xlabel('Annual Income (Logged)')
+ax2.set_ylabel('Frequency')
+
+# log with modified bandwidth
+log_annual_income = np.log(df_view['annual_income'])
+
+ax3 = sns.histplot(
+    x=log_annual_income,
+    kde=True, #to add the histogram into the density plot below
+    bins=25,
+    ax=axes[2],
+    kde_kws={'bw_adjust': 1.5} #Adjust the bandwidth of KDE, with bw_adjust > 1 makes it smoother
+
+)
+ax3.set_title('Distribution of Annual income (Modified Log)', fontsize=16)
+ax3.set_xlabel('Annual Income (Modified log)')
+ax3.set_ylabel('Frequency')
+
+# boxplot only
+sns.boxplot(
+    data=df_view,
+    x='annual_income',
+    ax=axes[3]
+    )
+plt.title('Distribution of Annual Income - Boxplot', fontsize=16)
+plt.xlabel('Annual Income')
+plt.show()
+```
+![Density plot](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Density%20analysis_Annual%20income_EDA_12.08.png)
+
+:microscope:**Analysis** 
+* Based on the logged kde and histogram plot, with the adjustment to the bandwidth, we can see there are two main peak:
+1. a strong primary mode at a log-income of 11
+2. a distinct secondary mode around 10.5,
+3. another tertiary mode, or shoulder, is visible around 9.8
+*For the efficiency, we may look as a bimodal shape of distribution
+
+```python
+# Change the log value back into the normal income number
+# The 2 peaks are from the analysis above
+print(f'The value of 1st peak {np.expm1(11)}')
+print(f'The value of 2nd peak {np.expm1(10.5)}')
+print(f'The value of the shoulder {np.expm1(9.8)}')
+
+# For segmenting the customer income later
+print(f'The value of 1st valley {np.expm1(10.7)}')
+print(f'The value of 2nd valley {np.expm1(10.1)}')
+
+The value of 1st peak 59873.14171519782
+The value of 2nd peak 36314.502674246636
+The value of the shoulder 18032.744927828524
+The value of 1st valley 44354.85513029784
+The value of 2nd valley 24342.00942
+```
+* **Density plot of annual income - initial observation**
+```python
+# Combine the information of the distribution chart (kde+histogram) modified log of annual income, and the boxplot:
+#1. The first distnct group centers around $60,000 (also the median)
+#2. The mean around $56500 reaffirms the density of this area of $60000
+#3. The 2nd group, which are based on the IQR of the data (from around $30000 to over $70000)
+# and the 2nd peak of the kde+histogram plot ($36000)centers around ~$30000-$40000. This is also
+#a group of density needed to be discussed further
+# 4. The distribution is rightly skewed, with the normal max of income is ~$130000, and several outliers up to $160000
+Does this one relate to several transactions that have extremely high gross sales, and extremely high profit?
+'''
+
+:hourglass:**Recommendation**
+* Based on the meaningful benchmark of income, we can
+1. Thinking of labeling groups of income,
+	- Low (<$25000)
+	- Mid ($25000 - $45000)
+	- High (>$45000)
+2. The customer base was segmented into three groups based on the natural divisions observed in the income distribution.
+* The boundaries were set at the local minima of the Kernel Density Estimate, ensuring an objective and reproducible segmentation
+
+### Final story of annual income
+* The income distribution is characterized by three modes of decreasing importance. We can validate their significance by mapping their locations to the data's quartiles using a boxplot:
+1. The primary mode at ~$60,000 is confirmed as the most significant, as it aligns with the dataset's median.
+2. A secondary mode at ~$36,000 is also highly significant, as it falls within the Interquartile Range (IQR), representing the central bulk of our data.
+3. A tertiary mode, or shoulder, exists around ~$18,000. While it represents a true cluster, its location in the lower whisker of the boxplot confirms it represents a smaller, less central group within the bottom 25% of earners.
+
+* **For the sake of creating a simplified business model, we can focus on the two primary modes within the IQR, treating the distribution as broadly bimodal.**
+
+#### 4.2.4.7 Questions for further investigations:
+
+**1. Profitability and Margin Analysis**
+* **The core of the hypothesis**: Do different income groups generate fundamentally different levels of profit?
+  1. How does the distribution of Profit change across the Low, Mid, and High-Income Groups?
+* This is the most direct test of the theory. We expect to see the "low-profit" peak dominated by the Low/Mid-Income groups and the "high-profit" peak dominated by the High-Income group.
+* A stacked histogram or a violin plot grouped by income level would be perfect here.
+  2. What is the average profit per transaction for each income group? Is the High-Income group significantly more profitable on a per-purchase basis?
+  3. Which income group is most associated with negative-profit transactions? Is it the Low-Income group buying heavily discounted items, or is it the High-Income group on the receiving end of specific discounts?
+
+**2. Sales Behavior and Customer Value**
+* **The core of the hypothesis**: Does income dictate purchasing power and frequency?
+  1. Is the "long tail" of extremely high Gross Sales transactions driven exclusively by the High-Income group?
+* Filter the dataset for the top 5% of sales transactions and then check the income group distribution of those customers.
+* We expect the High-Income group to be overwhelmingly represented.
+  2. What is the difference in Average Transaction Value (ATV) versus Purchase Frequency between the income groups?
+* This helps us understand customer value more deeply.
+* Do High-Income customers buy expensive things infrequently, while Low-Income customers buy cheap things often? This has major implications for marketing and loyalty programs.
+
+**3. Discount Sensitivity and Strategy**
+**The core of the hypothesis**Who are our discounts really for, and are they working as intended?
+  1. Which income group utilizes discounts most often?
+* Do the Low/Mid-Income customers account for the majority of transactions using the "Standard" discount tiers (10%, 20%, 40%, etc.)?
+  2. Are we "wasting" margin on the High-Income group? What percentage of their purchases are made with a discount?
+* If high-income customers are frequently using discounts, it could mean they wouldn't have bought the item otherwise (good), or it could mean we are giving away profit unnecessarily to customers who would have paid full price (bad).
+  3. Is there a link between income group and the usage of the unprofitable "Non-Standard" discounts?
+
+**4. Product Preference and Category Alignment**
+**The core of the hypothesis**Do different income groups buy different types of products?
+  1. Are there specific Product Categories that are disproportionately purchased by each income group?
+* For example, does the High-Income group buy more "Technology," while the Low-Income group buys more "Office Supplies"?
+* This can inform inventory management, store layouts, and targeted advertising.
+  2. What are the top 5 most profitable products for each income group?
+* Are we successfully marketing our high-margin products to our high-income customers?
+
+##### 4.2.4.8 Density plot - Discounts
 
 ## Project Structure
 
