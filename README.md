@@ -1635,6 +1635,77 @@ This suggests we should investigate what drives these extreme outcomes.
 3. Legitimate but extreme business events (e.g., clearance of expired stock, promotional bundles) that need to be understood.
 
 ##### 4.2.4.3 Density plot and Histograms for Specific columns
+1. There are five different variables that need to be further explored by using density plots. Density plots are helpful to understand the nature of the data distribution, and can partially explain our initial observation from the Boxplot analysis above. These five variables are:
+```python
+# Gross sales: the fundamental measures of revenue
+# Profit: The fundamental measures of profitability. It is independently given from each transaction.
+# Annual income: A key independent demographic feature, discrete value type
+# Discount: A density plot to reveal discounting strategy
+# Quantity: A histogram to reveal a typical basket type
+```
+2. Other columns contain a linear relationship with the gross sales (they are calculated based on gross sales, profit, quantity, and discount). Thus, they have similar distributions of gross sales.
+3. Similar to boxplot usage, different metrics contain different characteristics that may affect how we can handle each one while using density plot. We will have a look at each of the variable to see the difference
+
+##### 4.2.4.4 Density plot - Gross sales
+```python
+fig, axes = plt.subplots(1,2, figsize =(16,6))
+
+# Density plot for gross sales
+# Combines the histogram and KDE in one function
+ax1 = sns.histplot(
+    data = df_view,
+    x='gross_sales',
+    kde=True, #to add the histogram into the density plot below
+    #log_scale=True
+    ax=axes[0]
+)
+ax1.set_title('Distribution of Gross Sales (Original)', fontsize=16)
+ax1.set_xlabel('Gross Sales (Original)')
+ax1.set_ylabel('Frequency')
+
+# Logging scale of combine graphs
+ax2 = sns.histplot(
+    data = df_view,
+    x='gross_sales',
+    kde=True, #to add the histogram into the density plot below
+    log_scale=True,
+    ax=axes[1]
+)
+ax2.set_title('Distribution of Gross Sales (Log Scale)', fontsize=16)
+ax2.set_xlabel('Gross Sales (Log Scale)')
+ax2.set_ylabel('Frequency')
+```
+![Density plot analysis](Img/Density analysis_Gross sales_EDA_!2.08.png)
+* **Density plot analysis**
+1. Original Plot:
+```python
+# A classic skewed right of the original plot
+# The majority of sales are small, and a very small number of sales are extremely large
+```
+2. Logged scale plot:
+```python
+# The peak: Around $30, with nearly 2000 transactions
+# Gross sales of each transaction centered around $30 - $60
+# The right tail has the distribution stretching over $1000
+# The KDE curve shows a clear bump; it is very likely a meaningful signal. Therefore, considering any humps excluding the median point, or the center area
+# There are some high-value transactions contributing to the total revenue
+# As the original plot stated, we should not use the average value for typical gross sales by transactions; the median is better
+```
+**Insight** While the average sale is high ($127) due to a few large transactions, our most representative sale is closer to the median value of $56, which is confirmed by the peak of the log-transformed distribution
+
+❓ **Questions**
+1. A secondary hump around $15 may indicate a point of interest of a 2nd type of transaction
+ - What is happening at the $15 price point that is different from what's happening at the $50 price point of the median?
+ - We can explore the point further with other categorical values.
+2. The data shows that transactions below $10 are infrequent.
+ - Activity then accelerates rapidly from $10 up to the first major peak around $15-$20.
+ - So there is a soft floor when coming under $10 - rarely a transaction comes under this price
+
+##### 4.2.4.5 Density plot - Profit
+
+##### 4.2.4.6 Density plot - Annual income
+
+##### 4.2.4.7 Density plot - Discounts
 
 ## Project Structure
 
