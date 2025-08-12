@@ -1565,13 +1565,62 @@ IQR: $22 - $150 = $128 (50% of transaction)
 Median: $53
 Whiskers: $1 - $280
 Outliers: from over $280 to $thousands
-The analysis of the logged scale box plot reveals that the median gross sale is approximately $53. The central 50% of all sales fall between $22 (Q1) and $150 (Q3). The data ranges from a minimum of $1 up to a maximum 'normal' value of $280, with a significant number of outliers beyond that point, reaching into the thousands of dollars.
+The analysis of the logged scale box plot reveals that the median gross sale is approximately $53.
+The central 50% of all sales fall between $22 (Q1) and $150 (Q3).
+The data ranges from a minimum of $1 up to a maximum 'normal' value of $280,
+with a significant number of outliers beyond that point, reaching into the thousands of dollars.
 ```
 
 :ballot_box_with_check: **Insight** Most of the orders are in the standardized and reasonable sales of an e-commerce platform. However, the long tail of outliers may reveal more insights about how they grow their business.
 
 :question: **Question** Are those outliers from a few whale customers or from specific products?
 
+##### 4.2.4.2 Profit (with specific symmetric logged scale plot)
+The box plot for profits must be treated with caution because of potential negative values. This can be handled either by using a flag column (partitioned column also) while modeling the data, or by treating them with caution while doing the EDA step. In this case, I will use the symmetric logging scale to handle the negative values of profit
+
+```python
+# Create the plot area
+# fig is the whole big frame, axes is individual subplots when having multiple plots
+fig, axes = plt.subplots(1,3, figsize =(18,6)) #1 row, 3 columns , figsize 18 inches wide 6 inches tall
+
+# Make bot plox of gross sales
+# First the box plot for the original column of profit
+df_view['profit'].plot.box(ax=axes[0])
+axes[0].set_title('Original Plot (Squashed)')
+axes[0].set_ylabel('Profit $')
+
+# Then the box plot for the symlogging scale column of profit
+df_view['profit'].plot.box(ax=axes[1])
+axes[1].set_yscale('symlog', linthresh=10)
+axes[1].set_title('Symlogged scale Plot')
+axes[1].set_ylabel('Profit $ - Symlogged Scale')
+
+# Looking the profit margin to see there are % margin centered around 0.2, and there are negative profit margin
+df_view['profit_margin_bdiscount'].plot.box(ax=axes[2])
+axes[0].set_title('Original Plot')
+axes[0].set_ylabel('Profit margin %')
+```
+![Box plot analysis](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Boxplot%20Analysis_Profit_EDA_12.08.png)
+
+* **Analysis of Profit**
+**Symlogged scale plot analysis**
+```python
+# New symlogged scale plot:
+# 1. IQR: $0 - $20 = $20 (50% of transaction)
+# 2. Median: $8
+# 3. Whiskers: -50$ - $70
+# 4. Outliers: Negative side from over -$50 to $thousands.
+Positive side:from over $70 to thousands
+```
+:ballot_box_with_check: **Insight** Our analysis shows that a typical transaction is slightly profitable, with a median profit of about $8. The core 50% of our business generates profits between $0 and $20. However, the overall picture is one of high variability. While the range for normal transactions is between a $50 loss and a $70 profit, we have a significant number of extreme outliers on both ends, with some transactions generating thousands in profit and others thousands in losses.
+This suggests we should investigate what drives these extreme outcomes.
+
+:exclamation:Furthermore, the IQR starts at $0 means at least 25% of the recorded transactions are not profitable. It matches the profit margin plot. The profit margin bdiscount confirmed this issue. There are outliers with the negative profit margin of up to 80%
+
+❓ **Questions**
+1. Is this a data quality issue? - Maybe the problem of how the source data feeds into my calculation. However, in this particular case, I cannot reach this step of data sources, due to the characteristics of a community project.
+2. Is this an intentional loss to buy more profitable products?
+3. High discounts vs. negative profits?
 
 
 
