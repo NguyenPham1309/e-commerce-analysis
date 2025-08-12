@@ -26,6 +26,11 @@ This document outlines the structure of the e-commerce analysis project. **Click
        	-   [To transform and load the database from BigQuery to Google Colab](#422-to-transform-and-load-the-database-from-bigquery-to-google-colab)
         -   [General exploration of the Master view](#423-general-exploration-of-the-master-view)
         -   [Univariate analysis](#424-univariate-analysis)
+        	- [Box plot - Gross sales](#4241-gross-sales-with-logged-scale-plot)
+        	- [Box plot - Profit margin](
+        	- [Density plot and Histograms](
+        	- [Density plot - Gross sales](
+        	- [Density plot - Profit](
 
 ---
 ## 📝 Project Planning & Management (Notion)
@@ -1507,6 +1512,68 @@ plt.show()
 # This is because there are many high-value outliers that squeeze the box into an invisible box. The values must be scaled to an extent where we can clearly see the box demonstration
 ```
 ![Box plot Analysis](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Boxplot%20Analysis_UnivariateAnalysis_EDA_05.08.png)
+
+:heavy_exclamation_mark: Beacuse there are two specific different sets of box plots: one set of quite "normal" looking box plot, for example, Row ID (because of unique values characteristic), annual income (with slightly right skewed), and profit margin (Centered around 0.2), one set of box plot related to Gross sales and its derivied KPI. Therefore, the next step should be to focus on how we can further explore those squashed box plots.
+
+:interrobang: However, different metrics contain different characteristics that may affect how we can handle the squashed box (contains negative values, only positive values, discrete values, or practical continuous values). A single solution for all of these box plots is not effective - we must adapt to its uniqueness - even they are in the same section of numeric data types
+
+##### 4.2.4.1 Gross Sales (with Logged Scale plot)
+```python
+#===============================================================================
+# GROSS SALES box plot original and logging scale
+#===============================================================================
+
+# Create the plot area
+# fig is the whole big frame, axes is individual subplots when having multiple plots
+fig, axes = plt.subplots(1,2, figsize =(12,6)) #1 row, 2 columns, figsize 12 inches wide 6 inches tall
+
+'''
+fig (The entire canvas, 12x6 inches)
++------------------------------------------------------+
+|                                                      |
+|      axes[0] (The first subplot)      axes[1] (The second subplot) |
+|   +-------------------------+    +-------------------------+   |
+|   |                         |    |                         |   |
+|   |                         |    |                         |   |
+|   |                         |    |                         |   |
+|   |     (Plotting Area 1)   |    |     (Plotting Area 2)   |   |
+|   |                         |    |                         |   |
+|   |                         |    |                         |   |
+|   |                         |    |                         |   |
+|   +-------------------------+    +-------------------------+   |
+|                                                      |
++------------------------------------------------------+
+'''
+# Make bot plox of gross sales
+# First the box plot for the original column of gross sales
+df_view['gross_sales'].plot.box(ax=axes[0])
+axes[0].set_title('Original Plot (Squashed)')
+axes[0].set_ylabel('Gross Sales $')
+
+# Then the box plot for the logging scale column of gross sales
+df_view['gross_sales'].plot.box(ax=axes[1], logy = True)
+axes[1].set_title('Logged scale Plot')
+axes[1].set_ylabel('Gross Sales $ - Log Scale')
+```
+![Box plot Analysis](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Boxplot%20Analysis_Gross%20sales_EDA_12.08.png)
+
+* **Analysis of Gross Sales**
+1. Original box plot: Gross sales contains extremely high value by transaction (by product)
+2. New logged scale plot:
+```python
+IQR: $22 - $150 = $128 (50% of transaction)
+Median: $53
+Whiskers: $1 - $280
+Outliers: from over $280 to $thousands
+The analysis of the logged scale box plot reveals that the median gross sale is approximately $53. The central 50% of all sales fall between $22 (Q1) and $150 (Q3). The data ranges from a minimum of $1 up to a maximum 'normal' value of $280, with a significant number of outliers beyond that point, reaching into the thousands of dollars.
+```
+
+:ballot_box_with_check: **Insight** Most of the orders are in the standardized and reasonable sales of an e-commerce platform. However, the long tail of outliers may reveal more insights about how they grow their business.
+
+:question: **Question** Are those outliers from a few whale customers or from specific products?
+
+
+
 
 ## Project Structure
 
