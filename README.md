@@ -25,6 +25,7 @@ This document outlines the structure of the e-commerce analysis project. **Click
       	-   [To connect with Big Query](#421-to-connect-with-bigquery)
        	-   [To transform and load the database from BigQuery to Google Colab](#422-to-transform-and-load-the-database-from-bigquery-to-google-colab)
         -   [General exploration of the Master view](#423-general-exploration-of-the-master-view)
+        -   [Univariate analysis](#424-univariate-analysis)
 
 ---
 ## 📝 Project Planning & Management (Notion)
@@ -44,7 +45,7 @@ The complete code, visualizations, and detailed findings can be found in the mai
 ---
 ## ⚙️ How to Run This Project
 
-1.  Clone the repository: `git clone <your-repo-url>`
+1.  Clone the repository: `git clone <https://github.com/NguyenPham1309/e-commerce-analysis>'
 2.  Ensure you have the necessary libraries installed: `pandas`, `numpy`, `seaborn`, `matplotlib`, `google-cloud-bigquery`.
 3.  Open and run the `e-commerce-analysis.ipynb` notebook in a Jupyter or Google Colab environment.
 
@@ -1409,6 +1410,26 @@ Data columns (total 30 columns):
 ```
 ![Transforming numeric columns](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Numeric%20columns_EDA_05.08.png)
 
+* **Handling null values in the gender column**
+```python
+# Handling null values in the gender column
+df_view.isnull().sum()
+
+# Counting the number of each value in gender column
+print(df_view['gender'].value_counts(dropna=False))
+
+# Fill all NaN values with the string 'Other'
+df_view['gender'] = df_view['gender'].fillna('Other')
+
+#Checking after state of edition
+print(df_view['gender'].value_counts())
+gender
+M       25735
+F       25193
+None      362
+Name: count, dtype: int64
+```
+
 * **First exploration from the stats of numeric column**
 ```python
 #===============================================================================
@@ -1485,7 +1506,7 @@ plt.show()
 # This includes gross sales column, and the derived columns from it
 # This is because there are many high-value outliers that squeeze the box into an invisible box. The values must be scaled to an extent where we can clearly see the box demonstration
 ```
-![Box plot Analysis]()
+![Box plot Analysis](https://github.com/NguyenPham1309/e-commerce-analysis/blob/main/Img/Boxplot%20Analysis_UnivariateAnalysis_EDA_05.08.png)
 
 ## Project Structure
 
