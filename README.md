@@ -27,7 +27,7 @@ This document outlines the structure of the e-commerce analysis project. **Click
         -   [General exploration of the Master view](#423-general-exploration-of-the-master-view)
         -   [Univariate analysis](#424-univariate-analysis)
         	- [Box plot - Gross sales](#4241-gross-sales-with-logged-scale-plot)
-        	- [Box plot - Profit margin](
+        	- [Box plot - Profit margin](#4242-profit-with-specific-symmetric-logged-scale-plot)
         	- [Density plot and Histograms](
         	- [Density plot - Gross sales](
         	- [Density plot - Profit](
