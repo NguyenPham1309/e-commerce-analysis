@@ -1909,35 +1909,35 @@ Does this one relate to several transactions that have extremely high gross sale
 
 **1. Profitability and Margin Analysis**
 *:pushpin: **The core of the hypothesis**: Do different income groups generate fundamentally different levels of profit?
-  ❓1. How does the distribution of Profit change across the Low, Mid, and High-Income Groups?
+  ###❓1. How does the distribution of Profit change across the Low, Mid, and High-Income Groups?
 * :thought_balloon: This is the most direct test of the theory. We expect to see the "low-profit" peak dominated by the Low/Mid-Income groups and the "high-profit" peak dominated by the High-Income group.
 * :thought_balloon: A stacked histogram or a violin plot grouped by income level would be perfect here.
-  ❓2. What is the average profit per transaction for each income group? Is the High-Income group significantly more profitable on a per-purchase basis?
-  ❓3. Which income group is most associated with negative-profit transactions? Is it the Low-Income group buying heavily discounted items, or is it the High-Income group on the receiving end of specific discounts?
+  ###❓2. What is the average profit per transaction for each income group? Is the High-Income group significantly more profitable on a per-purchase basis?
+  ###❓3. Which income group is most associated with negative-profit transactions? Is it the Low-Income group buying heavily discounted items, or is it the High-Income group on the receiving end of specific discounts?
 
 **2. Sales Behavior and Customer Value**
 *:pushpin: **The core of the hypothesis**: Does income dictate purchasing power and frequency?
-  ❓1. Is the "long tail" of extremely high Gross Sales transactions driven exclusively by the High-Income group?
+  ###❓1. Is the "long tail" of extremely high Gross Sales transactions driven exclusively by the High-Income group?
 * :thought_balloon: Filter the dataset for the top 5% of sales transactions and then check the income group distribution of those customers.
 * :thought_balloon: We expect the High-Income group to be overwhelmingly represented.
-  ❓2. What is the difference in Average Transaction Value (ATV) versus Purchase Frequency between the income groups?
+  ###❓2. What is the difference in Average Transaction Value (ATV) versus Purchase Frequency between the income groups?
 * This helps us understand customer value more deeply.
 * Do High-Income customers buy expensive things infrequently, while Low-Income customers buy cheap things often? This has major implications for marketing and loyalty programs.
 
 **3. Discount Sensitivity and Strategy**
 *:pushpin: **The core of the hypothesis**Who are our discounts really for, and are they working as intended?
-  ❓1. Which income group utilizes discounts most often?
+  ###❓1. Which income group utilizes discounts most often?
 * :thought_balloon: Do the Low/Mid-Income customers account for the majority of transactions using the "Standard" discount tiers (10%, 20%, 40%, etc.)?
-  ❓2. Are we "wasting" margin on the High-Income group? What percentage of their purchases are made with a discount?
+  ###❓2. Are we "wasting" margin on the High-Income group? What percentage of their purchases are made with a discount?
 * :thought_balloon: If high-income customers are frequently using discounts, it could mean they wouldn't have bought the item otherwise (good), or it could mean we are giving away profit unnecessarily to customers who would have paid full price (bad).
-  ❓3. Is there a link between income group and the usage of the unprofitable "Non-Standard" discounts?
+  ###❓3. Is there a link between income group and the usage of the unprofitable "Non-Standard" discounts?
 
 **4. Product Preference and Category Alignment**
 *:pushpin: **The core of the hypothesis**Do different income groups buy different types of products?
-  ❓1. Are there specific Product Categories that are disproportionately purchased by each income group?
+  ###❓1. Are there specific Product Categories that are disproportionately purchased by each income group?
 * :thought_balloon: For example, does the High-Income group buy more "Technology," while the Low-Income group buys more "Office Supplies"?
 * :thought_balloon: This can inform inventory management, store layouts, and targeted advertising.
-  ❓2. What are the top 5 most profitable products for each income group?
+  ###❓2. What are the top 5 most profitable products for each income group?
 * :thought_balloon: Are we successfully marketing our high-margin products to our high-income customers?
 
 ##### 4.2.4.8 Density plot - Discounts
